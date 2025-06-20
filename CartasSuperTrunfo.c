@@ -1,22 +1,79 @@
-#include <stdio.h>
+#include <stdio.h> // Para entrada e saída padrão (printf, scanf)
+#include <string.h> // Para manipulação de strings (strcpy)
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-//Teste larissa
+// Definição da estrutura para representar uma carta do Super Trunfo
+struct CartaSuperTrunfo {
+    char estado;              // Uma letra de 'A' a 'H'
+    char codigoCarta[5];      // Ex: "A01", "B03" (4 caracteres + 1 para o terminador null '\0')
+    char nomeCidade[50];      // Nome da cidade (com folga para nomes maiores)
+    int populacao;            // Número de habitantes
+    float areaKm2;            // Área em quilômetros quadrados
+    float pib;                // Produto Interno Bruto
+    int pontosTuristicos;     // Quantidade de pontos turísticos
+};
 
 int main() {
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
-    
-    // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-    
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+    // Declaração de duas variáveis do tipo struct CartaSuperTrunfo
+    struct CartaSuperTrunfo carta1;
+    struct CartaSuperTrunfo carta2;
+
+    printf("--- Inserir dados da CARTA 1 ---\n");
+
+    // Coleta dos dados para a Carta 1
+    printf("Estado (A-H): ");
+    scanf(" %c", &carta1.estado); // O espaço antes de %c é para consumir qualquer whitespace (ex: Enter)
+    printf("Codigo da Carta (ex: A01): ");
+    scanf("%s", carta1.codigoCarta);
+    printf("Nome da Cidade: ");
+    scanf(" %[^\n]", carta1.nomeCidade); // Lê a linha inteira até encontrar um Enter
+    printf("Populacao: ");
+    scanf("%d", &carta1.populacao);
+    printf("Area (em km^2): ");
+    scanf("%f", &carta1.areaKm2);
+    printf("PIB: ");
+    scanf("%f", &carta1.pib);
+    printf("Numero de Pontos Turisticos: ");
+    scanf("%d", &carta1.pontosTuristicos);
+
+    printf("\n--- Inserir dados da CARTA 2 ---\n");
+
+    // Coleta dos dados para a Carta 2
+    printf("Estado (A-H): ");
+    scanf(" %c", &carta2.estado);
+    printf("Codigo da Carta (ex: A01): ");
+    scanf("%s", carta2.codigoCarta);
+    printf("Nome da Cidade: ");
+    scanf(" %[^\n]", carta2.nomeCidade);
+    printf("Populacao: ");
+    scanf("%d", &carta2.populacao);
+    printf("Area (em km^2): ");
+    scanf("%f", &carta2.areaKm2);
+    printf("PIB: ");
+    scanf("%f", &carta2.pib);
+    printf("Numero de Pontos Turisticos: ");
+    scanf("%d", &carta2.pontosTuristicos);
+
+    printf("\n--- Dados das Cartas Inseridas ---\n");
+
+    // Exibição dos dados da Carta 1
+    printf("\n--- CARTA 1 ---\n");
+    printf("Estado: %c\n", carta1.estado);
+    printf("Codigo da Carta: %s\n", carta1.codigoCarta);
+    printf("Nome da Cidade: %s\n", carta1.nomeCidade);
+    printf("Populacao: %d\n", carta1.populacao);
+    printf("Area: %.2f km^2\n", carta1.areaKm2); // %.2f para formatar com 2 casas decimais
+    printf("PIB: %.2f\n", carta1.pib);
+    printf("Pontos Turisticos: %d\n", carta1.pontosTuristicos);
+
+    // Exibição dos dados da Carta 2
+    printf("\n--- CARTA 2 ---\n");
+    printf("Estado: %c\n", carta2.estado);
+    printf("Codigo da Carta: %s\n", carta2.codigoCarta);
+    printf("Nome da Cidade: %s\n", carta2.nomeCidade);
+    printf("Populacao: %d\n", carta2.populacao);
+    printf("Area: %.2f km^2\n", carta2.areaKm2);
+    printf("PIB: %.2f\n", carta2.pib);
+    printf("Pontos Turisticos: %d\n", carta2.pontosTuristicos);
 
     return 0;
 }
