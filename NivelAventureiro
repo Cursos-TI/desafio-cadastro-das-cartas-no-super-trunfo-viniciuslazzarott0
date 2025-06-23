@@ -1,0 +1,108 @@
+#include <stdio.h>  // Necessário para funções de entrada e saída, como printf e scanf
+#include <string.h> // Necessário para funções de manipulação de strings, como strcpy
+
+// Definição da estrutura para representar uma carta do Super Trunfo
+// Uma 'struct' agrupa diferentes tipos de dados sob um único nome,
+// facilitando a organização das informações de cada carta.
+struct CartaSuperTrunfo {
+    char estado;              // Armazena uma única letra para o estado (ex: 'A' a 'H')
+    char codigoCarta[5];      // Armazena o código da carta (ex: "A01"). O tamanho 5 inclui o caractere nulo '\0' que finaliza strings em C.
+    char nomeCidade[50];      // Armazena o nome da cidade. Definido com 50 caracteres para acomodar nomes mais longos.
+    int populacao;            // Armazena o número de habitantes como um inteiro.
+    float areaKm2;            // Armazena a área da cidade em quilômetros quadrados como um número de ponto flutuante.
+    float pib;                // Armazena o Produto Interno Bruto como um número de ponto flutuante (em bilhões de reais).
+    int pontosTuristicos;     // Armazena a quantidade de pontos turísticos como um inteiro.
+    float densidadePopulacional; // Variável para armazenar o resultado da densidade populacional (hab/km²).
+    float pibPerCapita;       // Variável para armazenar o resultado do PIB por pessoa (reais/pessoa).
+};
+
+int main() {
+    // Declaração de duas variáveis do tipo 'struct CartaSuperTrunfo'.
+    // Cada uma dessas variáveis poderá guardar um conjunto completo de dados de uma carta.
+    struct CartaSuperTrunfo carta1;
+    struct CartaSuperTrunfo carta2;
+
+    printf("--- Inserir dados da CARTA 1 ---\n");
+
+    // Coleta de dados para a primeira carta.
+    // O 'scanf' lê a entrada do usuário e armazena nas respectivas variáveis da 'carta1'.
+    printf("Estado (A-H): ");
+    scanf(" %c", &carta1.estado); // O espaço antes de %c é crucial para consumir o caractere 'Enter' deixado por 'scanf's anteriores.
+    printf("Codigo da Carta (ex: A01): ");
+    scanf("%s", carta1.codigoCarta); // %s lê uma string. Não precisa do '&' para arrays de caracteres.
+    printf("Nome da Cidade: ");
+    scanf(" %[^\n]", carta1.nomeCidade); // %[^\n] lê a linha inteira até encontrar um 'Enter'. O espaço inicial é importante aqui também.
+    printf("Populacao: ");
+    scanf("%d", &carta1.populacao);
+    printf("Area (em km^2): ");
+    scanf("%f", &carta1.areaKm2);
+    printf("PIB (em bilhoes de reais): "); // Ajuste na mensagem para deixar claro que o PIB é em bilhões.
+    scanf("%f", &carta1.pib);
+    printf("Numero de Pontos Turisticos: ");
+    scanf("%d", &carta1.pontosTuristicos);
+
+    // Cálculos para a CARTA 1
+    // Aqui realizamos os cálculos sem o uso de condicionais (if/else) ou laços.
+    // Para a densidade, a divisão ocorre diretamente. Se a área for 0, resultará em um valor
+    // de ponto flutuante infinito (inf) ou NaN (Not a Number), dependendo do compilador e sistema.
+    carta1.densidadePopulacional = (float)carta1.populacao / carta1.areaKm2;
+    // Para o PIB per capita, multiplicamos o PIB (que está em bilhões) por 1 bilhão
+    // para obter o valor total em reais, e depois dividimos pela população.
+    // O cast (float) na população garante que a divisão seja de ponto flutuante.
+    carta1.pibPerCapita = (carta1.pib * 1000000000.0F) / (float)carta1.populacao;
+
+
+    printf("\n--- Inserir dados da CARTA 2 ---\n");
+
+    // Coleta de dados para a segunda carta, seguindo a mesma lógica da primeira.
+    printf("Estado (A-H): ");
+    scanf(" %c", &carta2.estado);
+    printf("Codigo da Carta (ex: B02): ");
+    scanf("%s", carta2.codigoCarta);
+    printf("Nome da Cidade: ");
+    scanf(" %[^\n]", carta2.nomeCidade);
+    printf("Populacao: ");
+    scanf("%d", &carta2.populacao);
+    printf("Area (em km^2): ");
+    scanf("%f", &carta2.areaKm2);
+    printf("PIB (em bilhoes de reais): ");
+    scanf("%f", &carta2.pib);
+    printf("Numero de Pontos Turisticos: ");
+    scanf("%d", &carta2.pontosTuristicos);
+
+    // Cálculos para a CARTA 2
+    // Repetição dos mesmos cálculos para a segunda carta.
+    carta2.densidadePopulacional = (float)carta2.populacao / carta2.areaKm2;
+    carta2.pibPerCapita = (carta2.pib * 1000000000.0F) / (float)carta2.populacao;
+
+
+    printf("\n--- Dados das Cartas Inseridas e Calculados ---\n");
+
+    // Exibição dos dados da CARTA 1.
+    // Usamos '%.2f' para formatar os números de ponto flutuante com duas casas decimais.
+    // O '%c' com o número 2 é uma tentativa de exibir o sobrescrito '²' para km², mas pode variar a exibição.
+    printf("\n--- CARTA 1 ---\n");
+    printf("Estado: %c\n", carta1.estado);
+    printf("Codigo: %s\n", carta1.codigoCarta);
+    printf("Nome da Cidade: %s\n", carta1.nomeCidade);
+    printf("Populacao: %d\n", carta1.populacao);
+    printf("Area: %.2f km%c\n", carta1.areaKm2, 2);
+    printf("PIB: %.2f bilhoes de reais\n", carta1.pib);
+    printf("Numero de Pontos Turisticos: %d\n", carta1.pontosTuristicos);
+    printf("Densidade Populacional: %.2f hab/km%c\n", carta1.densidadePopulacional, 2);
+    printf("PIB per Capita: %.2f reais\n", carta1.pibPerCapita);
+
+    // Exibição dos dados da CARTA 2.
+    printf("\n--- CARTA 2 ---\n");
+    printf("Estado: %c\n", carta2.estado);
+    printf("Codigo: %s\n", carta2.codigoCarta);
+    printf("Nome da Cidade: %s\n", carta2.nomeCidade);
+    printf("Populacao: %d\n", carta2.populacao);
+    printf("Area: %.2f km%c\n", carta2.areaKm2, 2);
+    printf("PIB: %.2f bilhoes de reais\n", carta2.pib);
+    printf("Numero de Pontos Turisticos: %d\n", carta2.pontosTuristicos);
+    printf("Densidade Populacional: %.2f hab/km%c\n", carta2.densidadePopulacional, 2);
+    printf("PIB per Capita: %.2f reais\n", carta2.pibPerCapita);
+
+    return 0; // Retorna 0 para indicar que o programa foi executado com sucesso.
+}
